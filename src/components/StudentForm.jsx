@@ -22,7 +22,7 @@ const StudentForm = ({ onSuccess }) => {
     e.preventDefault();
     try {
       // 1. Create student
-      const res = await axios.post('https://mongo-backend-mu-silk.vercel.app/students', {
+      const res = await axios.post('https://mongo-backend-mu-silk.vercel.app/api/students', {
         first_name: student.first_name,
         last_name: student.last_name,
         mobile: student.mobile,
@@ -33,7 +33,7 @@ const StudentForm = ({ onSuccess }) => {
       const studentId = res.data.id;
 
       // 2. Add marks for student
-      await axios.post('https://mongo-backend-mu-silk.vercel.app/marks', {
+      await axios.post('https://mongo-backend-mu-silk.vercel.app/api/marks', {
         student_id: studentId,
         subject: student.subject,
         marks: student.marks,
