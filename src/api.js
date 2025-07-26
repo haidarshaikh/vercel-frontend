@@ -3,5 +3,5 @@ import axios from 'axios';
 
 export default axios.create({
   // baseURL: 'https://nadsoft-c2cot7kul-haidar-shaikh-s-projects.vercel.app',
-  baseURL: 'https://mongo-backend-mu-silk.vercel.app/',
+  baseURL: 'https://mongo-backend-mu-silk.vercel.app/api',
 });
