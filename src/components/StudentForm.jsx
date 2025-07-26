@@ -22,7 +22,7 @@ const StudentForm = ({ onSuccess }) => {
     e.preventDefault();
     try {
       // 1. Create student
-      const res = await axios.post('http://localhost:4000/students', {
+      const res = await axios.post('https://vercel-backend-xi-ivory.vercel.app/students', {
         first_name: student.first_name,
         last_name: student.last_name,
         mobile: student.mobile,
@@ -33,7 +33,7 @@ const StudentForm = ({ onSuccess }) => {
       const studentId = res.data.id;
 
       // 2. Add marks for student
-      await axios.post('http://localhost:4000/marks', {
+      await axios.post('https://vercel-backend-xi-ivory.vercel.app/marks', {
         student_id: studentId,
         subject: student.subject,
         marks: student.marks,

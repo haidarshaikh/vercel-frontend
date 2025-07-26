@@ -12,7 +12,7 @@ const StudentList = () => {
 
   const fetchStudents = async () => {
     try {
-      const res = await axios.get(`http://localhost:4000/students?page=${page}&limit=5`);
+      const res = await axios.get(`https://vercel-backend-xi-ivory.vercel.app/students?page=${page}&limit=5`);
       setStudents(res.data);
       setTotalFetched(res.data.length);
     } catch (err) {
@@ -32,7 +32,7 @@ const StudentList = () => {
       showCancelButton: true
     });
     if (confirm.isConfirmed) {
-      await axios.delete(`http://localhost:4000/students/${id}`);
+      await axios.delete(`https://vercel-backend-xi-ivory.vercel.app/students/${id}`);
       Swal.fire('Deleted!', 'Student has been deleted.', 'success');
       fetchStudents();
     }

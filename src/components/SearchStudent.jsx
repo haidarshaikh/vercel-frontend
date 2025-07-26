@@ -9,7 +9,7 @@ const SearchStudent = () => {
     if (!searchId) return;
 
     try {
-      const res = await axios.get(`http://localhost:4000/marks/${searchId}`);
+      const res = await axios.get(`https://vercel-backend-xi-ivory.vercel.app/marks/${searchId}`);
       setResult(res.data);
     } catch (err) {
       console.error(err);
