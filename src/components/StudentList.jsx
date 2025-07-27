@@ -35,7 +35,7 @@ const handleDelete = async (studentId) => {
 
   if (confirm.isConfirmed) {
     try {
-      await axios.delete(`https://mongo-backend-04jh.onrender.com/api/students/${student.student_id}`);
+      await axios.delete(`https://mongo-backend-04jh.onrender.com/api/students/${studentId}`);
       Swal.fire('Deleted!', 'Student has been deleted.', 'success');
       fetchStudents();
     } catch (err) {
@@ -71,7 +71,7 @@ const handleDelete = async (studentId) => {
   <td>{s.classroom}</td>
   <td>
     <button className="btn btn-sm btn-info me-2" onClick={() => setEditingStudent(s)}>Edit</button>
-    <button className="btn btn-sm btn-danger" onClick={() => handleDelete(student.student_id)}>Delete</button>
+    <button className="btn btn-sm btn-danger" onClick={() => handleDelete(s.student_id)}>Delete</button>
   </td>
 </tr>
             ))
