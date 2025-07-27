@@ -1,7 +1,83 @@
+// import React, { useState } from 'react';
+// import axios from 'axios';
+// import Swal from "sweetalert2";
+// import { toast } from "react-toastify";
+
+// const UpdateStudentForm = ({ student, onClose }) => {
+//   const [formData, setFormData] = useState({ ...student });
+
+//   const handleChange = e => {
+//     const { name, value } = e.target;
+//     setFormData(prev => ({ ...prev, [name]: value }));
+//   };
+
+//   // const handleSubmit = async e => {
+//   //   e.preventDefault();
+//   //   try {
+//   //     await axios.put(`https://mongo-backend-04jh.onrender.com/api/students/${formData.student_id}`, formData);
+//   //     onClose();
+//   //   } catch (err) {
+//   //     console.error('Error updating student:', err);
+//   //     alert('Update failed');
+//   //   }
+//   // };
+//   const handleSubmit = async e => {
+//   e.preventDefault();
+//   try {
+//     await axios.put(`https://mongo-backend-04jh.onrender.com/api/students/${formData.student_id}`, formData);
+    
+//     Swal.fire({
+//       icon: 'success',
+//       title: 'Updated!',
+//       text: 'Student data has been updated successfully.'
+//     });
+
+//     onClose(); // Close modal and refresh data
+//   } catch (err) {
+//     console.error('Error updating student:', err);
+//     Swal.fire({
+//       icon: 'error',
+//       title: 'Update Failed',
+//       text: 'Something went wrong while updating student.'
+//     });
+//   }
+// };
+
+
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       <div className="mb-2">
+//         <label>First Name</label>
+//         <input name="first_name" className="form-control" value={formData.first_name} onChange={handleChange} />
+//       </div>
+//       <div className="mb-2">
+//         <label>Last Name</label>
+//         <input name="last_name" className="form-control" value={formData.last_name} onChange={handleChange} />
+//       </div>
+//       <div className="mb-2">
+//         <label>Email</label>
+//         <input name="email" className="form-control" value={formData.email} onChange={handleChange} />
+//       </div>
+//       <div className="mb-2">
+//         <label>Mobile</label>
+//         <input name="mobile" className="form-control" value={formData.mobile} onChange={handleChange} />
+//       </div>
+//       <div className="mb-2">
+//         <label>Classroom</label>
+//         <input name="classroom" className="form-control" value={formData.classroom} onChange={handleChange} />
+//       </div>
+//       <div className="d-flex justify-content-end">
+//         <button className="btn btn-secondary me-2" onClick={onClose} type="button">Cancel</button>
+//         <button className="btn btn-primary" type="submit">Save</button>
+//       </div>
+//     </form>
+//   );
+// };
+
+// export default UpdateStudentForm;
 import React, { useState } from 'react';
 import axios from 'axios';
 import Swal from "sweetalert2";
-import { toast } from "react-toastify";
 
 const UpdateStudentForm = ({ student, onClose }) => {
   const [formData, setFormData] = useState({ ...student });
@@ -11,38 +87,30 @@ const UpdateStudentForm = ({ student, onClose }) => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  // const handleSubmit = async e => {
-  //   e.preventDefault();
-  //   try {
-  //     await axios.put(`https://mongo-backend-04jh.onrender.com/api/students/${formData.student_id}`, formData);
-  //     onClose();
-  //   } catch (err) {
-  //     console.error('Error updating student:', err);
-  //     alert('Update failed');
-  //   }
-  // };
   const handleSubmit = async e => {
-  e.preventDefault();
-  try {
-    await axios.put(`https://mongo-backend-04jh.onrender.com/api/students/${formData.student_id}`, formData);
-    
-    Swal.fire({
-      icon: 'success',
-      title: 'Updated!',
-      text: 'Student data has been updated successfully.'
-    });
+    e.preventDefault();
+    try {
+      await axios.put(`https://mongo-backend-04jh.onrender.com/api/students/${formData.student_id}`, formData);
 
-    onClose(); // Close modal and refresh data
-  } catch (err) {
-    console.error('Error updating student:', err);
-    Swal.fire({
-      icon: 'error',
-      title: 'Update Failed',
-      text: 'Something went wrong while updating student.'
-    });
-  }
-};
+      // Show success alert, then close the modal after user clicks OK
+      await Swal.fire({
+        icon: 'success',
+        title: 'Updated!',
+        text: 'Student data has been updated successfully.',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'OK'
+      });
 
+      onClose(); // Close the modal and refresh the list
+    } catch (err) {
+      console.error('Error updating student:', err);
+      Swal.fire({
+        icon: 'error',
+        title: 'Update Failed',
+        text: 'Something went wrong while updating student.'
+      });
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -75,3 +143,4 @@ const UpdateStudentForm = ({ student, onClose }) => {
 };
 
 export default UpdateStudentForm;
+
