@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { toast } from "react-toastify";
 import UpdateStudentForm from './UpdateStudentForm';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -25,26 +26,26 @@ const StudentList = () => {
     fetchStudents();
   }, [page]);
 
-const handleDelete = async (studentId) => {
+const handleDelete = async (studentId, fetchStudents) => {
   const confirm = await Swal.fire({
-    title: 'Are you sure?',
-    text: 'This will delete the student.',
-    icon: 'warning',
-    showCancelButton: true
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Yes, delete it!",
   });
 
   if (confirm.isConfirmed) {
     try {
       await axios.delete(`https://mongo-backend-04jh.onrender.com/api/students/${studentId}`);
-      Swal.fire('Deleted!', 'Student has been deleted.', 'success');
-      fetchStudents();
+      toast.success("Student deleted successfully");
+      fetchStudents(); // reload the student list
     } catch (err) {
-      console.error('Error deleting student:', err);
-      Swal.fire('Error', 'Failed to delete student.', 'error');
+      console.error("Error deleting student:", err);
+      toast.error("Failed to delete student");
     }
   }
 };
-
 
   return (
     <div>
@@ -71,7 +72,12 @@ const handleDelete = async (studentId) => {
   <td>{s.classroom}</td>
   <td>
     <button className="btn btn-sm btn-info me-2" onClick={() => setEditingStudent(s)}>Edit</button>
-    <button className="btn btn-sm btn-danger" onClick={() => handleDelete(s.student_id)}>Delete</button>
+    <button
+  className="btn btn-sm btn-danger"
+  onClick={() => handleDelete(s.student_id, fetchStudents)}
+>
+  Delete
+</button>
   </td>
 </tr>
             ))
