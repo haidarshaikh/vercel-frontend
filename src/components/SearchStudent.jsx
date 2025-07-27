@@ -44,7 +44,7 @@ const SearchStudent = () => {
 
             <h6>Marks:</h6>
 
-            {/* 👇 Show what Marks actually contains for debugging */}
+            {/* Optional: Debugging line to check data structure */}
             {/* <pre>{JSON.stringify(result.Marks, null, 2)}</pre> */}
 
             <ul>
@@ -54,8 +54,12 @@ const SearchStudent = () => {
                     {m.subject}: {m.marks} / {m.out_of_marks}
                   </li>
                 ))
+              ) : result.Marks ? (
+                <li>
+                  {result.Marks.subject}: {result.Marks.marks} / {result.Marks.out_of_marks}
+                </li>
               ) : (
-                <li>No marks available or invalid data format.</li>
+                <li>No marks available.</li>
               )}
             </ul>
           </div>
