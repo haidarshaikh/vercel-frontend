@@ -71,7 +71,7 @@ const handleDelete = async (studentId) => {
   <td>{s.classroom}</td>
   <td>
     <button className="btn btn-sm btn-info me-2" onClick={() => setEditingStudent(s)}>Edit</button>
-    <button className="btn btn-sm btn-danger" onClick={() => handleDelete(s.student_id)}>Delete</button>
+    <button className="btn btn-sm btn-danger" onClick={() => handleDelete(student.student_id)}>Delete</button>
   </td>
 </tr>
             ))
