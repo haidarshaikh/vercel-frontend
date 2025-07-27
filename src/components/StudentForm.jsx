@@ -27,7 +27,10 @@ const StudentForm = ({ onSuccess }) => {
       last_name: student.last_name,
       mobile: student.mobile,
       email: student.email,
-      classroom: student.classroom
+      classroom: student.classroom,
+      subject: student.subject,
+  obtained_marks: student.obtained_marks,
+  total_marks: student.total_marks
     });
 
     const studentId = res.data.student_id;
