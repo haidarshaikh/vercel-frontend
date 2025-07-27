@@ -43,10 +43,20 @@ const SearchStudent = () => {
             <p>Classroom: {result.classroom}</p>
 
             <h6>Marks:</h6>
+
+            {/* 👇 Show what Marks actually contains for debugging */}
+            {/* <pre>{JSON.stringify(result.Marks, null, 2)}</pre> */}
+
             <ul>
-              {result.Marks.map(m => (
-                <li key={m.id}>{m.subject}: {m.marks} / {m.out_of_marks}</li>
-              ))}
+              {Array.isArray(result.Marks) ? (
+                result.Marks.map((m, index) => (
+                  <li key={m.id || index}>
+                    {m.subject}: {m.marks} / {m.out_of_marks}
+                  </li>
+                ))
+              ) : (
+                <li>No marks available or invalid data format.</li>
+              )}
             </ul>
           </div>
         </div>
