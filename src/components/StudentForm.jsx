@@ -30,7 +30,7 @@ const StudentForm = ({ onSuccess }) => {
         classroom: student.classroom
       });
 
-      const studentId = res.data.id;
+      const studentId = res.data.student_id;
 
       // 2. Add marks for student
       await axios.post('https://mongo-backend-04jh.onrender.com/api/marks', {
