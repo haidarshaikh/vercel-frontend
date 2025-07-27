@@ -4,15 +4,15 @@ import Swal from 'sweetalert2';
 
 const StudentForm = ({ onSuccess }) => {
   const [student, setStudent] = useState({
-    first_name: '',
-    last_name: '',
-    mobile: '',
-    email: '',
-    classroom: '',
-    subject: '',
-    marks: '',
-    out_of_marks: ''
-  });
+  first_name: '',
+  last_name: '',
+  mobile: '',
+  email: '',
+  classroom: '',
+  subject: '',
+  obtained_marks: '',
+  total_marks: ''
+});
 
   const handleChange = e => {
     setStudent({ ...student, [e.target.name]: e.target.value });
