@@ -56,17 +56,17 @@ const StudentList = () => {
         <tbody>
           {Array.isArray(students) && students.length > 0 ? (
             students.map(s => (
-              <tr key={s.id}>
-                <td>{s.id}</td>
-                <td>{s.first_name} {s.last_name}</td>
-                <td>{s.mobile}</td>
-                <td>{s.email}</td>
-                <td>{s.classroom}</td>
-                <td>
-                  <button className="btn btn-sm btn-info me-2" onClick={() => setEditingStudent(s)}>Edit</button>
-                  <button className="btn btn-sm btn-danger" onClick={() => handleDelete(s.id)}>Delete</button>
-                </td>
-              </tr>
+              <tr key={s._id}>
+  <td>{s.student_id}</td> {/* If you're using custom auto-incremented ID */}
+  <td>{s.first_name} {s.last_name}</td>
+  <td>{s.mobile}</td>
+  <td>{s.email}</td>
+  <td>{s.classroom}</td>
+  <td>
+    <button className="btn btn-sm btn-info me-2" onClick={() => setEditingStudent(s)}>Edit</button>
+    <button className="btn btn-sm btn-danger" onClick={() => handleDelete(s._id)}>Delete</button>
+  </td>
+</tr>
             ))
           ) : (
             <tr>
