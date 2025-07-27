@@ -35,27 +35,27 @@ const SearchStudent = () => {
       </div>
 
       {result && (
-        <div className="card">
-          <div className="card-body">
-            <h5>{result.first_name} {result.last_name}</h5>
-            <p>Email: {result.email}</p>
-            <p>Mobile: {result.mobile}</p>
-            <p>Classroom: {result.classroom}</p>
+  <div className="card">
+    <div className="card-body">
+      <h5>{result.first_name} {result.last_name}</h5>
+      <p>Email: {result.email}</p>
+      <p>Mobile: {result.mobile}</p>
+      <p>Classroom: {result.classroom}</p>
 
-            <h6>Marks:</h6>
-<ul>
-  {Array.isArray(result.Marks) && result.Marks.map((m, index) => (
-    <li key={index}>
-      {m.subject}: {m.obtained_marks} / {m.total_marks}
-    </li>
-  ))}
-</ul>
-
-          </div>
-        </div>
+      <h6>Marks:</h6>
+      {Array.isArray(result?.Marks) && result.Marks.length > 0 ? (
+        <ul>
+          {result.Marks.map((m, index) => (
+            <li key={index}>
+              {m.subject}: {m.obtained_marks} / {m.total_marks}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No marks data available.</p>
       )}
     </div>
-  );
-};
+  </div>
+)}
 
 export default SearchStudent;
