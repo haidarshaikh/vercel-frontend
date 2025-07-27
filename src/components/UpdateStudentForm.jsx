@@ -9,16 +9,38 @@ const UpdateStudentForm = ({ student, onClose }) => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  // const handleSubmit = async e => {
+  //   e.preventDefault();
+  //   try {
+  //     await axios.put(`https://mongo-backend-04jh.onrender.com/api/students/${formData.student_id}`, formData);
+  //     onClose();
+  //   } catch (err) {
+  //     console.error('Error updating student:', err);
+  //     alert('Update failed');
+  //   }
+  // };
   const handleSubmit = async e => {
-    e.preventDefault();
-    try {
-      await axios.put(`https://mongo-backend-04jh.onrender.com/api/students/${formData.student_id}`, formData);
-      onClose();
-    } catch (err) {
-      console.error('Error updating student:', err);
-      alert('Update failed');
-    }
-  };
+  e.preventDefault();
+  try {
+    await axios.put(`https://mongo-backend-04jh.onrender.com/api/students/${formData.student_id}`, formData);
+    
+    Swal.fire({
+      icon: 'success',
+      title: 'Updated!',
+      text: 'Student data has been updated successfully.'
+    });
+
+    onClose(); // Close modal and refresh data
+  } catch (err) {
+    console.error('Error updating student:', err);
+    Swal.fire({
+      icon: 'error',
+      title: 'Update Failed',
+      text: 'Something went wrong while updating student.'
+    });
+  }
+};
+
 
   return (
     <form onSubmit={handleSubmit}>
