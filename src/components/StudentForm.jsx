@@ -19,34 +19,35 @@ const StudentForm = ({ onSuccess }) => {
   };
 
   const handleSubmit = async e => {
-    e.preventDefault();
-    try {
-      // 1. Create student
-      const res = await axios.post('https://mongo-backend-04jh.onrender.com/api/students', {
-        first_name: student.first_name,
-        last_name: student.last_name,
-        mobile: student.mobile,
-        email: student.email,
-        classroom: student.classroom
-      });
+  e.preventDefault();
+  try {
+    // 1. Create student
+    const res = await axios.post('https://mongo-backend-04jh.onrender.com/api/students', {
+      first_name: student.first_name,
+      last_name: student.last_name,
+      mobile: student.mobile,
+      email: student.email,
+      classroom: student.classroom
+    });
 
-      const studentId = res.data.student_id;
+    const studentId = res.data.student_id;
 
-      // 2. Add marks for student
-      await axios.post('https://mongo-backend-04jh.onrender.com/api/marks', {
-        student_id: studentId,
-        subject: student.subject,
-        marks: student.marks,
-        out_of_marks: student.out_of_marks
-      });
+    // 2. Add marks for student with corrected field names
+    await axios.post('https://mongo-backend-04jh.onrender.com/api/marks', {
+      student_id: studentId,
+      subject: student.subject,
+      obtained_marks: student.marks,
+      total_marks: student.out_of_marks
+    });
 
-      Swal.fire('Success!', 'Student & marks added!', 'success');
+    Swal.fire('Success!', 'Student & marks added!', 'success');
 
-      if (onSuccess) onSuccess();  // close modal after successful submission
-    } catch (err) {
-      Swal.fire('Error', err.response?.data?.error || 'Something went wrong!', 'error');
-    }
-  };
+    if (onSuccess) onSuccess();  // close modal after successful submission
+  } catch (err) {
+    Swal.fire('Error', err.response?.data?.error || 'Something went wrong!', 'error');
+  }
+};
+
 
   return (
     <form onSubmit={handleSubmit} className="mb-4">
