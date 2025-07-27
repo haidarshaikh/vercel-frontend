@@ -33,7 +33,7 @@ const StudentList = () => {
       showCancelButton: true
     });
     if (confirm.isConfirmed) {
-      await axios.delete(`https://mongo-backend-04jh.onrender.com/api/students/${id}`);
+      await axios.delete(`https://mongo-backend-04jh.onrender.com/api/students/${student_id}`);
       Swal.fire('Deleted!', 'Student has been deleted.', 'success');
       fetchStudents();
     }
