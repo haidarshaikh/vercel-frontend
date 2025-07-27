@@ -25,7 +25,7 @@ const StudentList = () => {
     fetchStudents();
   }, [page]);
 
- const handleDelete = async (student) => {
+const handleDelete = async (student) => {
   const confirm = await Swal.fire({
     title: 'Are you sure?',
     text: 'This will delete the student.',
@@ -44,6 +44,7 @@ const StudentList = () => {
     }
   }
 };
+
 
   return (
     <div>
@@ -70,7 +71,7 @@ const StudentList = () => {
   <td>{s.classroom}</td>
   <td>
     <button className="btn btn-sm btn-info me-2" onClick={() => setEditingStudent(s)}>Edit</button>
-    <button className="btn btn-sm btn-danger" onClick={() => handleDelete(student.student_id)}>Delete</button>
+    <button className="btn btn-sm btn-danger" onClick={() => handleDelete(s)}>Delete</button>
   </td>
 </tr>
             ))
