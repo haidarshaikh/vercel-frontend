@@ -72,11 +72,12 @@ const StudentForm = ({ onSuccess }) => {
           <input name="subject" className="form-control" placeholder="Subject" onChange={handleChange} required />
         </div>
         <div className="col-md-4">
-          <input name="marks" className="form-control" placeholder="Marks" type="number" onChange={handleChange} required />
-        </div>
-        <div className="col-md-4">
-          <input name="out_of_marks" className="form-control" placeholder="Out of Marks" type="number" onChange={handleChange} required />
-        </div>
+  <input name="obtained_marks" className="form-control" placeholder="Obtained Marks" type="number" onChange={handleChange} required />
+</div>
+<div className="col-md-4">
+  <input name="total_marks" className="form-control" placeholder="Total Marks" type="number" onChange={handleChange} required />
+</div>
+
       </div>
       <button className="btn btn-primary mt-3">Add Student & Marks</button>
     </form>
