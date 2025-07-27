@@ -34,11 +34,11 @@ const StudentForm = ({ onSuccess }) => {
 
     // 2. Add marks for student with corrected field names
     await axios.post('https://mongo-backend-04jh.onrender.com/api/marks', {
-      student_id: studentId,
-      subject: student.subject,
-      obtained_marks: student.marks,
-      total_marks: student.out_of_marks
-    });
+  student_id: studentId,
+  subject: student.subject,
+  obtained_marks: student.obtained_marks,
+  total_marks: student.total_marks
+});
 
     Swal.fire('Success!', 'Student & marks added!', 'success');
 
