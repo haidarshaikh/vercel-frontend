@@ -13,8 +13,9 @@ const StudentList = () => {
   const fetchStudents = async () => {
     try {
       const res = await axios.get(`https://mongo-backend-04jh.onrender.com/api/students?page=${page}&limit=5`);
-      setStudents(res.data);
-      setTotalFetched(res.data.length);
+      const data = Array.isArray(res.data) ? res.data : res.data.students || [];
+      setStudents(data);
+      setTotalFetched(data.length);
     } catch (err) {
       console.error('Error fetching students:', err);
     }
@@ -53,19 +54,25 @@ const StudentList = () => {
           </tr>
         </thead>
         <tbody>
-          {students.map(s => (
-            <tr key={s.id}>
-              <td>{s.id}</td>
-              <td>{s.first_name} {s.last_name}</td>
-              <td>{s.mobile}</td>
-              <td>{s.email}</td>
-              <td>{s.classroom}</td>
-              <td>
-                <button className="btn btn-sm btn-info me-2" onClick={() => setEditingStudent(s)}>Edit</button>
-                <button className="btn btn-sm btn-danger" onClick={() => handleDelete(s.id)}>Delete</button>
-              </td>
+          {Array.isArray(students) && students.length > 0 ? (
+            students.map(s => (
+              <tr key={s.id}>
+                <td>{s.id}</td>
+                <td>{s.first_name} {s.last_name}</td>
+                <td>{s.mobile}</td>
+                <td>{s.email}</td>
+                <td>{s.classroom}</td>
+                <td>
+                  <button className="btn btn-sm btn-info me-2" onClick={() => setEditingStudent(s)}>Edit</button>
+                  <button className="btn btn-sm btn-danger" onClick={() => handleDelete(s.id)}>Delete</button>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="6" className="text-center">No students found.</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
 
