@@ -12,7 +12,7 @@ const StudentList = () => {
 
   const fetchStudents = async () => {
     try {
-      const res = await axios.get(`https://mongo-backend-04jh.onrender.com/api/students?page=${page}&limit=5`);
+     const res = await axios.get(`https://mongo-backend-04jh.onrender.com/api/students?page=${page}&limit=5`);
       const data = Array.isArray(res.data) ? res.data : res.data.students || [];
       setStudents(data);
       setTotalFetched(data.length);
