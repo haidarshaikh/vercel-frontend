@@ -12,7 +12,7 @@ const UpdateStudentForm = ({ student, onClose }) => {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      await axios.put(`https://mongo-backend-mu-silk.vercel.app/api/students/${formData.id}`, formData);
+      await axios.put(`https://mongo-backend-04jh.onrender.com/api/students/${formData.id}`, formData);
       onClose();
     } catch (err) {
       console.error('Error updating student:', err);
